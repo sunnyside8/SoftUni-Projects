@@ -1,0 +1,3 @@
+DELETE FROM clients 
+WHERE char_length(full_name) > 3 
+AND id NOT IN (SELECT client_id FROM courses);
