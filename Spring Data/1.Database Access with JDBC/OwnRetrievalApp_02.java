@@ -6,7 +6,7 @@ public class OwnRetrievalApp_02 {
     public static void main(String[] args) throws SQLException {
         Properties props = new Properties();
         props.setProperty("user","root");
-        props.setProperty("password","5207418");
+        // props.setProperty("password","ПАРОЛА");  парола,ако има такава
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/diablo",props);
 
