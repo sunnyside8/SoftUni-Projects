@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">>
+<head th:replace="fragment/common::head"></head>
+<body>
+<header>
+    <nav th:replace="fragment/common::navigation"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add product</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+    <form class="mx-auto w-25 bg-blur rounded" th:object="${productAddBindingModel}" method="POST" action="/products/add">
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Name</label>
+            </div>
+            <input th:field="*{name}" th:errorclass="bg-danger" type="text" class="form-control" id="name" name="name"/>
+            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"> Name error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <textarea th:field="*{description}" th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"></textarea>
+            <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Description error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="neededBefore" class="h4 mb-2">Before</label>
+            </div>
+            <input th:field="*{neededBefore}" th:errorclass="bg-danger" type="datetime-local" class="form-control" id="neededBefore" name="neededBefore"/>
+            <small th:if="${#fields.hasErrors('neededBefore')}" th:errors="*{neededBefore}" class="text-danger">Needed before date error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price</label>
+            </div>
+            <input th:field="*{price}" th:errorclass="bg-danger" type="number" step="0.1" class="form-control" id="price" name="price"/>
+            <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Price error message</small>
+        </div>
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="category" class="h4 mb-2">Category</label>
+            </div>
+            <select th:field="*{category}" th:errorclass="bg-danger" class="browser-default custom-select" id="category" name="category">
+                <option value="">Select category</option>
+				<option th:each="c : ${T(com.example.shoppinglistexam.model.entity.CategoryEnum).values()}"
+                        th:text="${c}" th:value="${c}" value="FOOD">Food</option>
+
+            </select>
+            <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger">Category error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add product</button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="fragment/common::footer"></footer>
+</body>
+</html>
