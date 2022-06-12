@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">>
+<html lang="en" >
+<head th:replace="common/fragments :: head"></head>
+<body>
+<header th:replace="common/fragments :: nav"></header>
+<main class="p-5 align-content-center bg-blur my-main">
+    <h2  class="text-light border-bottom" th:text="|Total sold copies of all albums: ${totalCopies} copies|"></h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div th:each="a : ${albums}" th:object="${a}" class="card mb-4 box-shadow">
+                <img th:src="'/img/' + *{artist.name().toLowerCase()} + '.jpg'" class="card-img-top" alt="Thumbnail [100%x225]"
+                     data-holder-rendered="true"
+                     style="height: 225px; width: 100%; display: block;">
+                <div class="card-body">
+                    <div class="text-center">
+                        <p class="card-text border-bottom " th:text="|Name: *{name} |"></p>
+                        <p class="card-text border-bottom " th:text="|Artist: *{artist.name()} |">Artist: Metallica</p>
+                        <p class="card-text border-bottom " th:text="|Genre: *{genre.name()} |">Genre: Metal</p>
+                        <p class="card-text border-bottom " th:text="|Price: *{price} |">Price: 19.99</p>
+                        <p class="card-text border-bottom" th:text="|Release Date: *{releaseDate} |">Release Date: </p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-sm btn-outline-secondary" th:href="@{/albums/buy/{id}(id= *{id})}" >Delete</a>
+                        </div>
+                        <small class="text-muted">1000 copies</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="common/fragments::footer" class="footer bg-blur"> </footer>
+</body>
+</html>
