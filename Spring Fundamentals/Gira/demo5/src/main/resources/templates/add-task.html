@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/common::head"></head>
+<body>
+<div class="page-container">
+    <header th:replace="fragments/common::nav" ></header>
+
+    <main class="content-wrap">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Task</span></h1>
+        <hr class="hr-3 w-25 bg-white"/>
+        <form class="mx-auto w-25 bg-blur"  method="POST" action="/tasks/add" th:object="${taskBindingModel}">
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="name" class="h4 mb-2">Name</label>
+                </div>
+                <input th:field="*{name}" th:errorclass="bg-danger" type="text"  class="form-control" id="name" name="name"/>
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="description" class="h4 mb-2">Description</label>
+                </div>
+                <input th:field="*{description}" th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"/>
+
+                <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Description error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="dueDate" class="h4 mb-2">Due Date</label>
+                </div>
+                <input th:field="*{dueDate}" th:errorclass="bg-danger" type="date" class="form-control" id="dueDate" name="dueDate"/>
+                <small th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}" class="text-danger">Date error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="classification" class="h4 mb-2">Classification</label>
+                </div>
+                <select th:field="*{classification}" th:errorclass="bg-danger" type="text" class="form-control" id="classification" name="classification">
+                    <option value="">Select Classification</option>
+                    <option value="" th:each="c : ${T(com.example.demo.model.entity.ClassificationEnum).values()}"
+                            th:text="${c}" th:value="${c}">FEATURE</option>
+
+
+                </select>
+                <small th:if="${#fields.hasErrors('classification')}" th:errors="*{classification}" class="text-danger">Classification error message</small>
+            </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="button btn-warning  mb-3" value="Register">Add Task</button>
+            </div>
+        </form>
+    </main>
+    <footer th:replace="fragments/common::footer" class="footer"></footer>
+</div>
+
+
+</body>
+</html>

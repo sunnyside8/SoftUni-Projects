@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">>
+<head th:replace="fragments/common::head"></head>
+<body>
+<div class="page-container">
+    <header th:replace="fragments/common::nav" ></header>
+
+    <main class="content-wrap">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
+        <hr class="hr-3 w-25 bg-white"/>
+        <form class="mx-auto w-25 bg-blur"  method="POST" action="/users/login" th:object="${userLoginBindingModel}">
+            <th:block th:each="e : ${#fields.errors()}"  th:object="${e}">
+            <small class="text-danger new-line" th:text="${e}" >Error message</small>
+            <br/>
+            </th:block>
+            <small th:if="${notFound}" class="text-danger new-line">Incorrect email or password!</small>
+            <div class="form-group input-container">
+                <div class="input-container label-holder d-flex justify-content-center">
+                    <label for="email" class="h3 mb-2">Email</label>
+                </div>
+                <input  th:field="*{email}" th:errorclass="bg-danger" th:type="text" class="form-control" id="email" name="email"/>
+            </div>
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+                    <label for="password" class="h3 mb-2">Password</label>
+                </div>
+                <input th:field="*{password}" th:errorclass="bg-danger" type="password" class="form-control" id="password" name="password"/>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="button  mb-3">Login</button>
+            </div>
+        </form>
+    </main>
+
+
+    <footer th:replace="fragments/common::footer" class="footer"></footer>
+</div>
+</body>
+</html>
