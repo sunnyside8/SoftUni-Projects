@@ -1,0 +1,21 @@
+function demo(arr) {
+
+  let storage = [];
+
+  for (const line of arr) {
+    let [name, level, items] = line.split(' / ');
+
+    level = Number(level);
+    items = items ? items.split(', ') : [];
+
+    storage.push({ name, level, items });
+  }
+
+  console.log(JSON.stringify(storage));
+}
+
+demo(['Isacc / 25 / Apple, GravityGun',
+
+  'Derek / 12 / BarrelVest, DestructionSword',
+
+  'Hes / 1 / Desolator, Sentinel, Antara']);

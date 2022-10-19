@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Part One</title>
+</head>
+
+<body>
+    <h1 id="heading">Hello DOM</h1>
+
+    <ul>
+        <li>Aude</li>
+        <li>Mercedes</li>
+        <li id="tesla-car">Tesla</li>
+    </ul>
+
+    <button onclick="changeTitle()">Title</button>
+    <button onclick="onSecondButtonClick()">Send</button>
+    <button onclick="changeCar()">Change Car</button>
+
+    <script>
+
+        function changeTitle() {
+            let headingElement = document.getElementById('heading');
+            headingElement.innerHTML = 'Hello from <em>Js</em>!'
+        }
+
+        function changeCar(){
+            let carElement = document.getElementById('tesla-car');
+            carElement.textContent = 'Tesla Model S';
+        }
+
+
+    </script>
+
+    <script src="demo.js"></script>
+
+</body>
+
+</html>

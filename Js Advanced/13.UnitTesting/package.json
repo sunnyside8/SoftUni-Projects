@@ -1,0 +1,16 @@
+{
+  "name": "13.unittesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01.Sub.js",
+  "scripts": {
+    "test": "mocha ./*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2"
+  }
+}
